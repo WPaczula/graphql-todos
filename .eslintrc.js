@@ -44,5 +44,7 @@ module.exports = {
     'import/no-dynamic-require': 'off',
     'global-require': 'off',
     'function-paren-newline': 'off',
+    'class-methods-use-this': 'off',
+    indent: 'off',
   },
 };
