@@ -6,13 +6,14 @@ import { createConnection } from 'typeorm';
 import * as cors from 'cors';
 import sessionMiddleware from './session/middleware';
 import UserResolvers from './modules/users/resolvers';
+import TodosResolvers from './modules/todos/resolvers';
 import Context from './context';
 
 const main = async () => {
   await createConnection();
 
   const schema = await buildSchema({
-    resolvers: [...UserResolvers],
+    resolvers: [...UserResolvers, ...TodosResolvers],
   });
 
   const apolloServer = new ApolloServer({

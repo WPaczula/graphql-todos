@@ -1,5 +1,6 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
 import { ObjectType, Field, ID } from 'type-graphql';
+import Todo from '../../todos/entity/todo';
 
 @ObjectType()
 @Entity('users')
@@ -14,6 +15,10 @@ class User {
 
   @Column('varchar', { length: 1024 })
   password: string;
+
+  @Field(() => [Todo])
+  @OneToMany(() => Todo, (todo) => todo.user)
+  todos: Todo[];
 }
 
 export default User;
