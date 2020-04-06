@@ -8,8 +8,8 @@ import User from '../../entity/user';
 
 @ValidatorConstraint({ async: true })
 class UniqueUserNameConstraint implements ValidatorConstraintInterface {
-  validate(email: string) {
-    return User.findOne({ where: { email } }).then((user) => {
+  validate(userName: string) {
+    return User.findOne({ where: { userName } }).then((user) => {
       if (user) return false;
       return true;
     });

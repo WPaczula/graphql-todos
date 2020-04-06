@@ -46,5 +46,6 @@ module.exports = {
     'function-paren-newline': 'off',
     'class-methods-use-this': 'off',
     indent: 'off',
+    'no-undef': 'off',
   },
 };

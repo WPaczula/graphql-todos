@@ -1,6 +1,6 @@
 import 'reflect-metadata';
 import { Resolver, Query, Mutation, Arg } from 'type-graphql';
-import hash from '../utils/hash';
+import * as bcrypt from 'bcrypt';
 import User from '../entity/user';
 import RegisterInput from '../inputs/register';
 
@@ -15,7 +15,7 @@ class RegisterResolver {
   async register(
     @Arg('data') { userName, password }: RegisterInput,
   ): Promise<User> {
-    const hashedPassword = await hash(password);
+    const hashedPassword = await bcrypt.hash(password, 12);
 
     const user = await User.create({
       userName,
