@@ -9,17 +9,18 @@ import RegisterResolver from './users/resolvers/register';
 import Context from './context';
 import LoginResolver from './users/resolvers/login';
 import MeResolver from './users/resolvers/me';
+import LogoutResolver from './users/resolvers/logout';
 
 const main = async () => {
   await createConnection();
 
   const schema = await buildSchema({
-    resolvers: [RegisterResolver, LoginResolver, MeResolver],
+    resolvers: [RegisterResolver, LoginResolver, MeResolver, LogoutResolver],
   });
 
   const apolloServer = new ApolloServer({
     schema,
-    context: ({ req }): Context => ({ req }),
+    context: ({ req, res }): Context => ({ req, res }),
   });
 
   const app = express();

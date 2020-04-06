@@ -5,7 +5,7 @@ import Context from '../../context';
 
 @Resolver()
 class MeResolver {
-  @Query(() => User)
+  @Query(() => User, { nullable: true })
   async me(@Ctx() context: Context) {
     const { userId } = context.req.session!;
     if (!userId) {

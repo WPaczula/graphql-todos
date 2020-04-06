@@ -47,5 +47,6 @@ module.exports = {
     'class-methods-use-this': 'off',
     indent: 'off',
     'no-undef': 'off',
+    'no-unused-expressions': 'off',
   },
 };
