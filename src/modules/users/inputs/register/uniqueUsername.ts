@@ -4,15 +4,17 @@ import {
   ValidatorConstraint,
   ValidatorConstraintInterface,
 } from 'class-validator';
-import User from '../../entity/user';
+import { UserRepository } from '../../repositories';
 
 @ValidatorConstraint({ async: true })
 class UniqueUserNameConstraint implements ValidatorConstraintInterface {
   validate(userName: string) {
-    return User.findOne({ where: { userName } }).then((user) => {
-      if (user) return false;
-      return true;
-    });
+    return UserRepository()
+      .findOne({ where: { userName } })
+      .then((user) => {
+        if (user) return false;
+        return true;
+      });
   }
 }
 

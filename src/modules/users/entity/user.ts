@@ -1,9 +1,9 @@
-import { Entity, PrimaryGeneratedColumn, Column, BaseEntity } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 import { ObjectType, Field, ID } from 'type-graphql';
 
 @ObjectType()
 @Entity('users')
-class User extends BaseEntity {
+class User {
   @Field(() => ID)
   @PrimaryGeneratedColumn('uuid')
   id: string;

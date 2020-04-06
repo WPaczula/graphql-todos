@@ -48,5 +48,6 @@ module.exports = {
     indent: 'off',
     'no-undef': 'off',
     'no-unused-expressions': 'off',
+    'import/no-cycle': 'off',
   },
 };

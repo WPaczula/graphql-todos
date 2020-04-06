@@ -3,7 +3,8 @@ import { Resolver, Mutation, Arg, Ctx } from 'type-graphql';
 import * as bcrypt from 'bcrypt';
 import User from '../entity/user';
 import LoginInput from '../inputs/login';
-import Context from '../../context';
+import Context from '../../../context';
+import { UserRepository } from '../repositories';
 
 @Resolver()
 class LoginResolver {
@@ -12,7 +13,7 @@ class LoginResolver {
     @Arg('data') { userName, password }: LoginInput,
     @Ctx() context: Context,
   ): Promise<User | null> {
-    const user = await User.findOne({ where: { userName } });
+    const user = await UserRepository().findOne({ where: { userName } });
 
     if (!user) {
       return null;

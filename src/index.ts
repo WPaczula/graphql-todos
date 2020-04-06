@@ -5,17 +5,14 @@ import { buildSchema } from 'type-graphql';
 import { createConnection } from 'typeorm';
 import * as cors from 'cors';
 import sessionMiddleware from './session/middleware';
-import RegisterResolver from './users/resolvers/register';
+import UserResolvers from './modules/users/resolvers';
 import Context from './context';
-import LoginResolver from './users/resolvers/login';
-import MeResolver from './users/resolvers/me';
-import LogoutResolver from './users/resolvers/logout';
 
 const main = async () => {
   await createConnection();
 
   const schema = await buildSchema({
-    resolvers: [RegisterResolver, LoginResolver, MeResolver, LogoutResolver],
+    resolvers: [...UserResolvers],
   });
 
   const apolloServer = new ApolloServer({

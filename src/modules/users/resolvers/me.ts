@@ -1,7 +1,8 @@
 import 'reflect-metadata';
 import { Resolver, Query, Ctx } from 'type-graphql';
 import User from '../entity/user';
-import Context from '../../context';
+import Context from '../../../context';
+import { UserRepository } from '../repositories';
 
 @Resolver()
 class MeResolver {
@@ -12,7 +13,7 @@ class MeResolver {
       return null;
     }
 
-    return User.findOne(userId);
+    return UserRepository().findOne(userId);
   }
 }
 
